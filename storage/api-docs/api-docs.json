@@ -1,0 +1,1765 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Rest Api documentation",
+        "description": "Implementation of Swagger with in Laravel",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://rest-api",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/api/auth/signup": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Signup",
+                "operationId": "signup",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SignupRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SignupResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequestResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/signup/activate/{id}": {
+            "get": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Activate user",
+                "operationId": "activateUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SignupResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequestResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Login",
+                "operationId": "login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequestResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/logout": {
+            "get": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Logout",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LogoutResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequestResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/auth/user": {
+            "get": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Get current user info",
+                "operationId": "currentUser",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CurrentUserResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequestResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/businesses": {
+            "get": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Get list of businesses",
+                "description": "Returns list of businesses",
+                "operationId": "getBusinessesList",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search businesses by query string value.",
+                        "required": false
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sort businesses by query string value.",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "enum",
+                                "enum": [
+                                    "business.name asc",
+                                    "business.name desc",
+                                    "description asc",
+                                    "description desc",
+                                    "raiting asc",
+                                    "raiting desc",
+                                    "category.name asc",
+                                    "category.name desc"
+                                ]
+                            }
+                        },
+                        "example": "raiting asc;business.name desc"
+                    },
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Filter businesses by query string value. (by category.id, by raiting)",
+                        "required": false,
+                        "example": "category.id 1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BusinessListResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Store new business",
+                "description": "Returns business data",
+                "operationId": "storeBusiness",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreBusinessRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BusinessResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequestResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/businesses/{id}": {
+            "get": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Get business information",
+                "description": "Returns business data",
+                "operationId": "getBusinessById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Business id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BusinessResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequestResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Update existing business",
+                "description": "Returns updated business data",
+                "operationId": "updateBusiness",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Business id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateBusinessRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BusinessResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequestResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Delete existing business",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteBusiness",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Business id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeleteResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/businesses/statistics": {
+            "get": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Get count of businesses per day",
+                "description": "Returns count of businesses",
+                "operationId": "getCountOfBusinessesPerDay",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "Start date of period",
+                        "required": true,
+                        "example": "2020-08-02"
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "End date of period",
+                        "required": true,
+                        "example": "2020-08-03"
+                    },
+                    {
+                        "name": "owner_id",
+                        "in": "query",
+                        "description": "Filtering by owner id (available only for admin)",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BusinessCountPerDayResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get list of users",
+                "description": "Returns list of users",
+                "operationId": "getUsersList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserListResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "LoginRequest": {
+                "title": "Login request",
+                "description": "Login request body data",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "title": "Email",
+                        "description": "Email of the user",
+                        "type": "string",
+                        "example": "admin@admin.com"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "description": "Password of the business",
+                        "type": "password",
+                        "example": "password"
+                    }
+                },
+                "type": "object"
+            },
+            "Business": {
+                "title": "Business",
+                "description": "Business model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "owner_id": {
+                        "title": "Owner ID",
+                        "description": "Business creator id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the business",
+                        "type": "string",
+                        "example": "This is business name"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "description": "Description of the business",
+                        "type": "string",
+                        "example": "This is business description"
+                    },
+                    "raiting": {
+                        "title": "Owner ID",
+                        "description": "Number between 0 and 100",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 75
+                    },
+                    "phone": {
+                        "title": "Phone",
+                        "description": "Phone of the business",
+                        "type": "string",
+                        "example": "+1 (855) 451-9378"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "description": "Contact email",
+                        "type": "string",
+                        "example": "hackett.hector@mante.biz"
+                    },
+                    "website": {
+                        "title": "Website",
+                        "description": "Website of the business",
+                        "type": "string",
+                        "example": "hackett.hector@mante.biz"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Date of created business",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Date of updated business",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "category": {
+                        "title": "Category",
+                        "description": "Category of business model",
+                        "$ref": "#/components/schemas/Category"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Business"
+                }
+            },
+            "BusinessList": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BaseList"
+                    },
+                    {
+                        "title": "Business list",
+                        "description": "Business list model",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/BusinessShortInfo"
+                                }
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "Business list"
+                        }
+                    }
+                ]
+            },
+            "BusinessShortInfo": {
+                "title": "Business short info",
+                "description": "Business short info model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the business",
+                        "type": "string",
+                        "example": "This is business name"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "description": "Description of the business",
+                        "type": "string",
+                        "example": "This is business description"
+                    },
+                    "raiting": {
+                        "title": "Owner ID",
+                        "description": "Number between 0 and 100",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 75
+                    },
+                    "category": {
+                        "title": "Category",
+                        "description": "Category of business model",
+                        "$ref": "#/components/schemas/Category"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Business short info"
+                }
+            },
+            "Category": {
+                "title": "Category",
+                "description": "Category of business",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the category",
+                        "type": "string",
+                        "example": "Category name"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Category"
+                }
+            },
+            "BaseList": {
+                "title": "Base list",
+                "description": "Base list model",
+                "properties": {
+                    "currentPage": {
+                        "title": "current_page",
+                        "description": "Number of the current page",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "firstPageUrl": {
+                        "title": "first_page_url",
+                        "description": "Url of first page",
+                        "type": "string",
+                        "example": "http://rest-api/api/route?page=1"
+                    },
+                    "from": {
+                        "title": "from",
+                        "description": "Start id of item on current page",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "lastPage": {
+                        "title": "last_page",
+                        "description": "Last number page of pagination",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "lastPageUrl": {
+                        "title": "last_page_url",
+                        "description": "Url of the last page",
+                        "type": "string",
+                        "example": "http://rest-api/api/route?page=1"
+                    },
+                    "nextPageUrl": {
+                        "title": "next_page_url",
+                        "description": "Url of the next page",
+                        "type": "string",
+                        "example": null
+                    },
+                    "path": {
+                        "title": "path",
+                        "description": "Current path",
+                        "type": "string",
+                        "example": "http://rest-api/api/route"
+                    },
+                    "perPage": {
+                        "title": "per_page",
+                        "description": "Count of items per page",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 10
+                    },
+                    "prevPageUrl": {
+                        "title": "prev_page_url",
+                        "description": "Url of the previous page",
+                        "type": "string",
+                        "example": null
+                    },
+                    "to": {
+                        "title": "to",
+                        "description": "Last id of item on current page",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "total": {
+                        "title": "total",
+                        "description": "Count of items on current page",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Base list"
+                }
+            },
+            "UsersList": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BaseList"
+                    },
+                    {
+                        "title": "Business list",
+                        "description": "Business list model",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "int64",
+                                            "example": 2
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "User"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "test@test.com"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "Business list"
+                        }
+                    }
+                ]
+            },
+            "BadRequestResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ErrorResource"
+                    },
+                    {
+                        "title": "BadRequestResource",
+                        "description": "Bad request resource",
+                        "properties": {
+                            "message": {
+                                "title": "Message",
+                                "description": "Message wrapper",
+                                "example": "Bad request"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "BadRequestResource"
+                        }
+                    }
+                ]
+            },
+            "ErrorResource": {
+                "title": "ErrorResource",
+                "description": "Error resource",
+                "properties": {
+                    "status": {
+                        "title": "Status",
+                        "description": "Status wrapper",
+                        "example": "error"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ErrorResource"
+                }
+            },
+            "SuccessResource": {
+                "title": "SuccessResource",
+                "description": "Success resource",
+                "properties": {
+                    "status": {
+                        "title": "Status",
+                        "description": "Status wrapper",
+                        "example": "success"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Message wrapper",
+                        "example": "The operation was successful."
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "SuccessResource"
+                }
+            },
+            "BusinessCountPerDayResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SuccessResource"
+                    },
+                    {
+                        "title": "BusinessCountPerDayResource",
+                        "description": "Business count per day resource",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "properties": {
+                                    "businessesToDay": {
+                                        "title": "Businesses to day",
+                                        "description": "Businesses to day wrapper",
+                                        "properties": {
+                                            "2020-08-01": {
+                                                "type": "int64",
+                                                "example": 1
+                                            },
+                                            "2020-08-02": {
+                                                "type": "int64",
+                                                "example": 0
+                                            },
+                                            "2020-08-03": {
+                                                "type": "int64",
+                                                "example": 5
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "BusinessCountPerDayResource"
+                        }
+                    }
+                ]
+            },
+            "BusinessListResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SuccessResource"
+                    },
+                    {
+                        "title": "BusinessListResource",
+                        "description": "Business list resource",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "properties": {
+                                    "list": {
+                                        "title": "Business list",
+                                        "description": "Business list wrapper",
+                                        "$ref": "#/components/schemas/BusinessList"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "BusinessListResource"
+                        }
+                    }
+                ]
+            },
+            "BusinessResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SuccessResource"
+                    },
+                    {
+                        "title": "BusinessResource",
+                        "description": "Business resource",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "properties": {
+                                    "business": {
+                                        "title": "Business",
+                                        "description": "Business wrapper",
+                                        "$ref": "#/components/schemas/Business"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "BusinessResource"
+                        }
+                    }
+                ]
+            },
+            "CurrentUserResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SuccessResource"
+                    },
+                    {
+                        "title": "CurrentUserResource",
+                        "description": "Current user resource",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "properties": {
+                                    "user": {
+                                        "title": "User",
+                                        "description": "User wrapper",
+                                        "properties": {
+                                            "id": {
+                                                "type": "int64",
+                                                "example": 2
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "User"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "test@test.com"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "CurrentUserResource"
+                        }
+                    }
+                ]
+            },
+            "DeleteResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SuccessResource"
+                    },
+                    {
+                        "title": "DeleteResource",
+                        "description": "Delete resource",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "example": "[]"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "DeleteResource"
+                        }
+                    }
+                ]
+            },
+            "ForbiddenResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ErrorResource"
+                    },
+                    {
+                        "title": "ForbiddenResource",
+                        "description": "Forbidden resource",
+                        "properties": {
+                            "message": {
+                                "title": "Message",
+                                "description": "Message wrapper",
+                                "example": "Forbidden"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "ForbiddenResource"
+                        }
+                    }
+                ]
+            },
+            "LoginResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SuccessResource"
+                    },
+                    {
+                        "title": "LoginResource",
+                        "description": "Login resource",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "properties": {
+                                    "loginData": {
+                                        "title": "Login data",
+                                        "description": "Login data wrapper",
+                                        "properties": {
+                                            "access_token": {
+                                                "type": "string",
+                                                "example": "IxIiwianRpIjoiN2I2NTYxNWM0ZWZmZGFiYWU..."
+                                            },
+                                            "token_type": {
+                                                "type": "string",
+                                                "example": "Bearer"
+                                            },
+                                            "expires_at": {
+                                                "type": "string",
+                                                "example": "2021-08-03 18:30:35"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "LoginResource"
+                        }
+                    }
+                ]
+            },
+            "LogoutResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SuccessResource"
+                    },
+                    {
+                        "title": "LogoutResource",
+                        "description": "Logout resource",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "type": "object"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "LogoutResource"
+                        }
+                    }
+                ]
+            },
+            "NotFoundResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ErrorResource"
+                    },
+                    {
+                        "title": "NotFoundResource",
+                        "description": "Not found resource",
+                        "properties": {
+                            "message": {
+                                "title": "Message",
+                                "description": "Message wrapper",
+                                "example": "Not found"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "NotFoundResource"
+                        }
+                    }
+                ]
+            },
+            "SignupResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SuccessResource"
+                    },
+                    {
+                        "title": "SignupResource",
+                        "description": "Signup resource",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "properties": {
+                                    "user": {
+                                        "title": "User data",
+                                        "description": "User data wrapper",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "User"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "test@test.com"
+                                            },
+                                            "id": {
+                                                "type": "int64",
+                                                "example": 2
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "SignupResource"
+                        }
+                    }
+                ]
+            },
+            "UnauthenticatedResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ErrorResource"
+                    },
+                    {
+                        "title": "UnauthenticatedResource",
+                        "description": "Unauthenticated resource",
+                        "properties": {
+                            "status": {
+                                "title": "Status",
+                                "description": "Status wrapper",
+                                "example": "failed"
+                            },
+                            "message": {
+                                "title": "Message",
+                                "description": "Message wrapper",
+                                "example": "Unauthenticated"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "UnauthenticatedResource"
+                        }
+                    }
+                ]
+            },
+            "UserListResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SuccessResource"
+                    },
+                    {
+                        "title": "UserListResource",
+                        "description": "User list resource",
+                        "properties": {
+                            "data": {
+                                "title": "Data",
+                                "description": "Data wrapper",
+                                "properties": {
+                                    "usersList": {
+                                        "title": "User list",
+                                        "description": "User list wrapper",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/UsersList"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object",
+                        "xml": {
+                            "name": "UserListResource"
+                        }
+                    }
+                ]
+            },
+            "SignupRequest": {
+                "title": "Login request",
+                "description": "Login request body data",
+                "required": [
+                    "name",
+                    "email",
+                    "password",
+                    "password_confirmation"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the user",
+                        "type": "string",
+                        "example": "User"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "description": "Email of the user",
+                        "type": "string",
+                        "example": "test@test.com"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "description": "Password of the business",
+                        "type": "password",
+                        "example": "password"
+                    },
+                    "password_confirmation": {
+                        "title": "password_confirmation",
+                        "description": "Password confirmation",
+                        "type": "password",
+                        "example": "password"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreBusinessRequest": {
+                "title": "Store Business request",
+                "description": "Store Business request body data",
+                "required": [
+                    "name",
+                    "description",
+                    "category_id",
+                    "raiting",
+                    "phone",
+                    "email",
+                    "website"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the business",
+                        "type": "string",
+                        "example": "This is business name"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "description": "Description of the business",
+                        "type": "string",
+                        "example": "This is business description"
+                    },
+                    "categoryId": {
+                        "title": "category_id",
+                        "description": "Id of the category",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "raiting": {
+                        "title": "Owner ID",
+                        "description": "Number between 0 and 100",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 75
+                    },
+                    "phone": {
+                        "title": "Phone",
+                        "description": "Phone of the business",
+                        "type": "string",
+                        "example": "+1 (855) 451-9378"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "description": "Contact email",
+                        "type": "string",
+                        "example": "hackett.hector@mante.biz"
+                    },
+                    "website": {
+                        "title": "Website",
+                        "description": "Website of the business",
+                        "type": "string",
+                        "example": "hackett.hector@mante.biz"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateBusinessRequest": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/StoreBusinessRequest"
+                    },
+                    {
+                        "title": "Update Business request",
+                        "description": "Update Business request body data",
+                        "required": [
+                            "id",
+                            "name",
+                            "description",
+                            "category_id",
+                            "raiting",
+                            "phone",
+                            "email",
+                            "website"
+                        ],
+                        "properties": {
+                            "id": {
+                                "title": "ID",
+                                "description": "ID",
+                                "type": "integer",
+                                "format": "int64",
+                                "example": 1
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            }
+        },
+        "securitySchemes": {
+            "passport": {
+                "type": "oauth2",
+                "description": "Laravel passport oauth2 security.",
+                "in": "header",
+                "scheme": "https",
+                "flows": {
+                    "password": {
+                        "authorizationUrl": "http://rest-api/oauth/authorize",
+                        "tokenUrl": "http://rest-api/oauth/token",
+                        "refreshUrl": "http://rest-api/token/refresh",
+                        "scopes": []
+                    }
+                }
+            }
+        }
+    }
+}
